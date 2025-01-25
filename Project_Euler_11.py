@@ -16,3 +16,23 @@
 # 위에서 보듯이, 5개 이상의 약수를 갖는 첫번째 삼각수는 28입니다.
 
 # 그러면 500개 이상의 약수를 갖는 가장 작은 삼각수는 얼마입니까?
+import math
+
+result = 0
+num = 1
+cnt = 0
+
+def triangle_number(number):
+    return number * (number + 1) // 2
+
+while True:
+    cnt = 0
+    num += 1
+    for i in range(1, int(math.sqrt(triangle_number(num))) + 1):
+        if triangle_number(num) % i == 0:
+            cnt += 1
+    if cnt * 2 >= 500:
+        result = triangle_number(num)
+        break
+
+print(result)
