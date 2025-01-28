@@ -13,24 +13,20 @@
 
 # 참고: 계산 과정에는 백만을 넘어가는 수가 나와도 괜찮습니다.
 
-result = 0
-maxcnt = 0
-cnt = 0
-num = 1
-
-while num != 1000000:
-    maxcnt = cnt
+def lenght(num):
     cnt = 0
-    temp = num
-    while temp != 1:
-        if temp % 2 == 0:
-            temp //= 2
-            cnt += 1
+    orgin = num
+    while num != 1:
+        if num % 2 == 0:
+            num //= 2
         else:
-            temp = (3 * temp) + 1
-            cnt += 1
-    if maxcnt < cnt:
-        result = num
-    num += 1
+            num = 3 * num + 1
+        cnt += 1
+    return cnt
 
-print(result)
+def find_max_lenght(num):
+    cnts = {1: 1}
+    for i in range(2,num):
+        cnts[lenght(i)] = i
+    return max(cnts.items())
+print(find_max_lenght(1000000))
