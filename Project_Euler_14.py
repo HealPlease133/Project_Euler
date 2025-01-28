@@ -15,8 +15,10 @@
 
 def lenght(num):
     cnt = 0
-    orgin = num
     while num != 1:
+        if num in cnts:
+            cnt += cnts[num]
+            break
         if num % 2 == 0:
             num //= 2
         else:
@@ -24,9 +26,16 @@ def lenght(num):
         cnt += 1
     return cnt
 
+cnts = {1: 1}
+
 def find_max_lenght(num):
-    cnts = {1: 1}
-    for i in range(2,num):
-        cnts[lenght(i)] = i
-    return max(cnts.items())
-print(find_max_lenght(1000000))
+    result = 0
+    maxcnt = 0
+    for i in range(2,num + 1):
+        cnts[i] = lenght(i)
+        if maxcnt < cnts[i]:
+            result = i
+            maxcnt = cnts[i]
+    return result
+    
+print(find_max_lenght(1_000_000))
