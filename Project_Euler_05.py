@@ -12,6 +12,35 @@ def isPrime(num):
     return primes
         
 def solution(num):
-    
+    maxcnt2 = 0
+    maxcnt3 = 0
+    maxcnt5 = 0
+    result = 1
+    temps = []
+    for i in range(2, num +1):
+        cnt2 = 0
+        cnt3 = 0
+        cnt5 = 0
+        temp = isPrime(i)
+        for k in temp:
+            if k == 2:
+                cnt2 += 1
+            elif k == 5:
+                cnt5 += 1
+            elif k == 3:
+                cnt3 += 1
+            else:
+                if k in temps:
+                    continue
+                result *= k
+                temps.append(k)
+        if maxcnt2 < cnt2:
+            maxcnt2 = cnt2
+        if maxcnt3 < cnt3:
+            maxcnt3 = cnt3
+        if maxcnt5 < cnt5:
+            maxcnt5 = cnt5
+    result *= (5 ** maxcnt5) * (2 ** maxcnt2) * (3 ** maxcnt3)
+    return result
     
 print(solution(20))
